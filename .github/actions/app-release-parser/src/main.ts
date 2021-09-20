@@ -1,8 +1,5 @@
-/* eslint-disable @typescript-eslint/camelcase */
-/* eslint-disable @typescript-eslint/no-var-requires */
-// eslint-disable prettier/prettier
-const github = require('@actions/github')
-const core = require('@actions/core')
+import * as github from '@actions/github'
+import * as core from '@actions/core'
 
 try {
 	const { context } = github
@@ -15,7 +12,6 @@ try {
 
 	if (!tagMatch) {
 		core.setFailed('No tag matching the format could be found, aborting .... !')
-		return
 	}
 	const appName = tagMatch[1]
 	core.setOutput('appName', appName)

@@ -3,7 +3,7 @@ name: Build and push images on production registry
 on:
     push:
         tags:
-            - '[A-Za-z0-9]-\d\.\d\.\d'
+            - '[A-Za-z0-9]+-[0-9]+.[0-9]+.[0-9]+'
         branches:
             - 'master'
 

@@ -30,9 +30,9 @@ jobs:
                       console.log(`tagMatch: ${tagMatch}`)
                       const appName = tagMatch[1]
                       console.log(`Parsed appName: ${appName}`)
-                      return appName;
+                      return {appName};
 
             - name: Build
               run: |
-                  echo ${{ steps.tag-parser.outputs.result }}
+                  echo ${{ steps.tag-parser.outputs.result.appName }}
                   

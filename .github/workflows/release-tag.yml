@@ -34,5 +34,5 @@ jobs:
 
             - name: Build
               run: |
-                  ${{ steps.tag-parser.outputs.result }}
+                  echo ${{ steps.tag-parser.outputs.result }}
                   

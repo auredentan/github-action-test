@@ -1,0 +1,5 @@
+name: 'Parse a tag'
+description: 'Parse a tag'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

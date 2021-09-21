@@ -15,25 +15,29 @@ jobs:
             - name: Cleanup docker
               run: rm -rf ~/.docker
 
+            # - name: Parse tag
+            #   id: tag-parser
+            #   uses: actions/github-script@v4
+            #   with:
+            #       github-token: ${{ secrets.GITHUB_TOKEN }}
+            #       result-encoding: json
+            #       script: |
+            #           const { GITHUB_REF } = process.env
+            #           const tag = GITHUB_REF.substr('/ref/tags/'.length, GITHUB_REF.length)
+            #           console.log('tag', tag)
+            #           const regexp = /^([A-Za-z0-9]+)-[0-9]+.[0-9]+.[0-9]+/
+            #           const tagMatch = tag.match(regexp)
+            #           console.log(`tagMatch: ${tagMatch}`)
+            #           const appName = tagMatch[1]
+            #           console.log(`Parsed appName: ${appName}`)
+            #           return {appName};
+
             - name: Parse tag
               id: tag-parser
-              uses: actions/github-script@v4
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  result-encoding: json
-                  script: |
-                      const { GITHUB_REF } = process.env
-                      const tag = GITHUB_REF.substr('/ref/tags/'.length, GITHUB_REF.length)
-                      console.log('tag', tag)
-                      const regexp = /^([A-Za-z0-9]+)-[0-9]+.[0-9]+.[0-9]+/
-                      const tagMatch = tag.match(regexp)
-                      console.log(`tagMatch: ${tagMatch}`)
-                      const appName = tagMatch[1]
-                      console.log(`Parsed appName: ${appName}`)
-                      return {appName};
+              uses: ./.github/actions/app-release-parser
 
             - name: Build
               run: |
-                  echo 
-                  echo ${{ steps.tag-parser.outputs.result.appName }}
+                  echo 'here'
+                  echo ${{ steps.tag-parser.outputs.appName }}
                   
